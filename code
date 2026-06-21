@@ -1,0 +1,34 @@
+class Solution:
+    def convert(self, s, numRows):
+        # If there is only one row, return the string as it is
+        if numRows == 1:
+            return s
+        # Create a list to store characters of each row
+        rows = [""] * numRows
+
+        current_row = 0
+        going_down = True
+
+        # Traverse each character in the string
+        for ch in s:
+            rows[current_row] += ch
+
+            # Change direction when top or bottom row is reached
+            if current_row == 0:
+                going_down = True
+            elif current_row == numRows - 1:
+                going_down = False
+
+            # Move to the next row
+            if going_down:
+                current_row += 1
+            else:
+                current_row -= 1
+
+        # Join all rows to get the final string
+        result = ""
+        for row in rows:
+            result += row
+
+        return result  
+        
